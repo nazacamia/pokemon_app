@@ -9,9 +9,28 @@ import 'package:pokemon_app/model/pokemon.dart';
 class PokemonListController extends GetxController {
   Rx<int> pageIndex=0.obs;
   RxList<dynamic> pokemonList= [].obs;
+  RxList<dynamic> preferredList= [].obs;
   RxBool isLoading = false.obs;
 
   static PokemonListController get to => Get.find<PokemonListController>();
+
+  void addOrRemoveToFavourite(Pokemon pokemon) {
+    if (isPreferred(pokemon)){
+      preferredList.remove(pokemon);
+    } else {
+      preferredList.add(pokemon);
+    }
+  }
+
+  bool isPreferred(Pokemon pokemon) {
+    for (Pokemon tmpPokemon in preferredList) {
+      if (pokemon == tmpPokemon) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   Future<Color> getImagePalette (ImageProvider imageProvider) async {
     final PaletteGenerator paletteGenerator = await PaletteGenerator
         .fromImageProvider(imageProvider);

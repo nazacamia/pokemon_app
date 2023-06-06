@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pokemon_app/logic/pokemon_list_controller.dart';
 import 'package:pokemon_app/model/pokemon.dart';
 
 class PokemonTile extends StatefulWidget {
@@ -20,36 +22,50 @@ class _PokemonTileState extends State<PokemonTile> {
   Widget build(BuildContext context) {
     return Card(
       color: color == const Color(0xff181818) || color == const Color(0xff101010) || color == const Color(0xff282828)? Colors.blueGrey:color,
-      child: MaterialButton(
-        padding: const EdgeInsets.all(10),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-        onPressed: () {},
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.center,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          MaterialButton(
+            padding: const EdgeInsets.all(10),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+            onPressed: () {},
+            child: Column(
               children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle
-                  ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle
+                      ),
+                    ),
+                    Container(
+                      height: 8,
+                      width: 100,
+                      color: widget.pokemon.color,
+                    ),
+                    Image.network(widget.pokemon.url)
+                  ],
                 ),
-                Container(
-                  height: 8,
-                  width: 100,
-                  color: widget.pokemon.color,
-                ),
-                Image.network(widget.pokemon.url)
+                const SizedBox(height: 10,),
+                Text('#${widget.index} ', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                Text(widget.pokemon.name[0].toUpperCase() + widget.pokemon.name.substring(1), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               ],
             ),
-            const SizedBox(height: 10,),
-            Text('#${widget.index} ', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-            Text(widget.pokemon.name[0].toUpperCase() + widget.pokemon.name.substring(1), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-          ],
-        ),
+          ),
+          Positioned(
+              top: 0,
+              right: 0,
+              child: Obx(()=>IconButton(
+                  onPressed: (){
+                    PokemonListController.to.addOrRemoveToFavourite(widget.pokemon);
+                  }, icon: PokemonListController.to.isPreferred(widget.pokemon)? const Icon(Icons.star, size: 30, color: Colors.yellow,): const Icon(Icons.star, size: 30,)
+              ))
+          ),
+        ],
       ),
     );
   }
