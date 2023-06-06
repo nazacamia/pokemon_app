@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokemon_app/logic/pokemon_list_controller.dart';
 import 'package:pokemon_app/model/pokemon.dart';
+import 'package:pokemon_app/presentation/screens/preferred_screen.dart';
 import 'package:pokemon_app/presentation/widgets/pokemon_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,13 +32,20 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: false,
         backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+              onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PreferredScreen()));
+              },
+              icon: const Icon(CupertinoIcons.heart_fill, color: Colors.black,))
+        ],
         title: Text(widget.title),
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(60),
           child: Stack(
             alignment: Alignment.center,
             children: [
-              SizedBox(height: 60,),
+              SizedBox(height: 60),
             ],
           ),
         ),
@@ -61,6 +70,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             FloatingActionButton(
+              heroTag: 'btn1',
               onPressed: (_pageIndex <= 1)
                   ? null
                   : () {
@@ -73,6 +83,7 @@ class _HomePageState extends State<HomePage> {
               child: const Icon(Icons.arrow_back_ios_sharp),
             ),
             FloatingActionButton(
+              heroTag: 'btn2',
               onPressed: () {
                 setState(() {
                   _pageIndex++;
