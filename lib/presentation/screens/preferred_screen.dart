@@ -18,7 +18,11 @@ class PreferredScreen extends StatelessWidget {
         if (PokemonListController.to.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          return ListView.builder(
+          return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                childAspectRatio: 0.95
+              ),
               itemCount: PokemonListController.to.preferredList.length,
               itemBuilder: (context, index) {
                 return PokemonTile(
@@ -26,6 +30,7 @@ class PreferredScreen extends StatelessWidget {
                   index: index + 1,
                 );
               });
+              
         }
       }),
 
