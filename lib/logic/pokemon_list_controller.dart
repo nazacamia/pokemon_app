@@ -12,7 +12,7 @@ class PokemonListController extends GetxController {
   RxList<dynamic> preferredList= [].obs;
   RxBool isLoading = false.obs;
   ColorGetter colorGetter = const ColorGetter();
-  ApiProvider apiProvider = ApiProvider();
+  ApiProvider apiProvider = const ApiProvider();
 
   static PokemonListController get to => Get.find<PokemonListController>();
 

@@ -75,12 +75,7 @@ class PokemonScreenBody extends StatefulWidget {
 
 class _PokemonScreenBodyState extends State<PokemonScreenBody> {
 
-  ApiProvider apiProvider = ApiProvider();
-  @override
-  void initState() {
-    super.initState();
-
-  }
+  ApiProvider apiProvider = const ApiProvider();
 
   @override
   Widget build(BuildContext context) {

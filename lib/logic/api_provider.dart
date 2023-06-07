@@ -39,5 +39,5 @@ class ApiProvider {
     PokemonStats pokemonStats = PokemonStats.fromJson(map);
     return pokemonStats;
   }
-
+  const ApiProvider();
 }
