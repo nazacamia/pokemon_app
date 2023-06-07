@@ -2,15 +2,16 @@
 
 Pokemon App
 
-## Getting Started
+Il progetto consiste in un app-Pokedex. 
 
-This project is a starting point for a Flutter application.
+Come state-management ho scelto Getx, il quale mi ha permesso di gestire al meglio 
+le liste di pokemon, specialmente i preferiti.
 
-A few resources to get you started if this is your first Flutter project:
+Il pokedex è composto da una lista di 50 pokemon per pagina, ogni elemento della lista 
+è clickabile, così da poter vedere nello specifico le caratteristiche di ogni pokemon.
+Per questa sezione ho scelto l'utilizzo di un semplice FutureBuilder dato che
+non ho ritenuto necessario l'aggiunta di un Controller.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Nelle action dell'Appbar è possibile clickare l'icona rappresentante un cuore,
+la quale vi porterà nella sezione dei pokemon preferiti da voi scelti in
+precedenza.

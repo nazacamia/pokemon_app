@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokemon_app/logic/pokemon_list_controller.dart';
 import 'package:pokemon_app/model/pokemon.dart';
+import 'package:pokemon_app/presentation/screens/pokemon_screen.dart';
 
 class PokemonTile extends StatefulWidget {
   const PokemonTile({Key? key, required this.pokemon, required this.index}) : super(key: key);
@@ -26,9 +27,12 @@ class _PokemonTileState extends State<PokemonTile> {
         alignment: Alignment.center,
         children: [
           MaterialButton(
+            minWidth: context.width,
             padding: const EdgeInsets.all(10),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PokemonScreen(pokemon: widget.pokemon)));
+            },
             child: Column(
               children: [
                 Stack(

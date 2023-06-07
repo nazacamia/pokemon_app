@@ -44,7 +44,6 @@ class PokemonListController extends GetxController {
     pokemonList = [].obs;
     int offset = (pageIndex-1)*50;
     String api = 'https://pokeapi.co/api/v2/pokemon?limit=50&offset=${offset.toString()}';
-    print(api);
     http.Response request = await http.get(Uri.parse(api));
     Map body = json.decode(request.body);
     int tmpIndex = pageIndex==1? 1 : (pageIndex-1) * 50 + 1;

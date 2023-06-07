@@ -17,8 +17,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _pageIndex = 1;
-  List<dynamic> rawPokemonList = [];
-  List<Pokemon> pokemonList = [];
   int offset = 0;
   @override
   void initState() {
