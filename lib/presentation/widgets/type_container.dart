@@ -7,7 +7,7 @@ class TypeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       alignment: Alignment.center,
       height: 40,
       decoration: const BoxDecoration(
