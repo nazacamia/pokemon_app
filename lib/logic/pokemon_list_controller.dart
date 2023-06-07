@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'package:pokemon_app/model/pokemon.dart';
 
 class PokemonListController extends GetxController {
-  Rx<int> pageIndex=0.obs;
   RxList<dynamic> pokemonList= [].obs;
   RxList<dynamic> preferredList= [].obs;
   RxBool isLoading = false.obs;
