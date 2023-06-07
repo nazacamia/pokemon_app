@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    PokemonListController.to.fetchPokemon(_pageIndex);
+    PokemonListController.to.updatePokemonList(_pageIndex);
   }
 
   @override
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                         _pageIndex--;
                         offset = offset - 50;
                       });
-                      PokemonListController.to.fetchPokemon(_pageIndex);
+                      PokemonListController.to.updatePokemonList(_pageIndex);
                     },
               child: const Icon(Icons.arrow_back_ios_sharp),
             ),
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                   _pageIndex++;
                   offset = offset + 50;
                 });
-                PokemonListController.to.fetchPokemon(_pageIndex);
+                PokemonListController.to.updatePokemonList(_pageIndex);
               },
               child: const Icon(Icons.arrow_forward_ios_sharp),
             ),

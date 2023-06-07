@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:pokemon_app/logic/api_provider.dart';
 import 'package:pokemon_app/logic/color_getter.dart';
 import 'dart:convert';
 
@@ -11,6 +12,7 @@ class PokemonListController extends GetxController {
   RxList<dynamic> preferredList= [].obs;
   RxBool isLoading = false.obs;
   ColorGetter colorGetter = const ColorGetter();
+  ApiProvider apiProvider = ApiProvider();
 
   static PokemonListController get to => Get.find<PokemonListController>();
 
@@ -32,20 +34,17 @@ class PokemonListController extends GetxController {
   }
 
 
-  fetchPokemon(int pageIndex) async {
+  updatePokemonList(int pageIndex) async {
     isLoading.value = true;
     pokemonList = [].obs;
     int offset = (pageIndex-1)*50;
 
-    String api = 'https://pokeapi.co/api/v2/pokemon?limit=50&offset=${offset.toString()}';
-    http.Response request = await http.get(Uri.parse(api));
-    Map body = json.decode(request.body);
+    Map body = await apiProvider.fetchPokemonList(offset: offset);
 
     int tmpIndex = pageIndex==1? 1 : (pageIndex-1) * 50 + 1;
 
     for (Map element in body['results']) {
       String url = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${tmpIndex.toString()}.png';
-      Map body = json.decode(request.body);
       Color color = await colorGetter.getColor(url);
       Pokemon pokemon = Pokemon(name: element['name'], url: url, color: color);
       tmpIndex++;
