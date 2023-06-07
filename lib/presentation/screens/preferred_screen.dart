@@ -15,23 +15,26 @@ class PreferredScreen extends StatelessWidget {
 
       ),
       body: Obx(() {
-        if (PokemonListController.to.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+        if (PokemonListController.to.preferredList.isEmpty) {
+          return const Center(child: Text('Non hai ancora aggiunto pokemon preferiti'),);
         } else {
           return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                childAspectRatio: 0.95
+                  childAspectRatio: 0.95
               ),
               itemCount: PokemonListController.to.preferredList.length,
               itemBuilder: (context, index) {
+
                 return PokemonTile(
                   pokemon: PokemonListController.to.preferredList[index],
                   index: index + 1,
                 );
               });
-              
         }
+
+              
+
       }),
 
     );

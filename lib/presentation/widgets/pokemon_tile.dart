@@ -31,7 +31,7 @@ class _PokemonTileState extends State<PokemonTile> {
             padding: const EdgeInsets.all(10),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PokemonScreen(pokemon: widget.pokemon)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> PokemonScreen(pokemon: widget.pokemon)));
             },
             child: Column(
               children: [
